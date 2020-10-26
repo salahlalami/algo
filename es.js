@@ -4,6 +4,14 @@ let unique = [...new Set(A)];
 let positive = A.filter((x) => x >= 0);
 let negative = A.filter((x) => x < 0);
 
+const numbers = [2, 0, 4];
+
+function summarize(accumulator, number) {
+  return accumulator + number;
+}
+
+const sum = numbers.reduce(summarize, 0);
+
 function neverDuplicated(A) {
   let result = [];
   let B = clone(A);

@@ -39,7 +39,7 @@ let A = [
   [2, 6],
 ];
 
-let B = vector(A);
+let B = A.flat();
 console.log(B);
 let sorted = B.sort((s, b) => b - s);
 
