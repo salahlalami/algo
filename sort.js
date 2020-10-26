@@ -30,59 +30,6 @@ function sort(A) {
   return B;
 }
 
-function boucle(A) {
-  let i = 0;
-  let indexMin = i;
-  let min = A[i];
-  let result = [];
-  while (i < A.length) {
-    if (min > A[i + 1]) {
-      min = A[i + 1];
-      indexMin = i + 1;
-    }
-
-    if (i === A.length - 1) {
-      result.push(min);
-      A.splice(indexMin, 1);
-      console.log(A);
-      min = A[0];
-      i = 0;
-    } else {
-      i++;
-    }
-    if (A.length === 0) {
-      break;
-    }
-  }
-  return result;
-}
-function sortWhile(A) {
-  let i = 1;
-  let indexMin = 0;
-  let min = A[0];
-  let result = [];
-  while (i <= A.length) {
-    if (min > A[i]) {
-      min = A[i];
-      indexMin = i;
-    }
-    if (i === A.length - 1) {
-      result.push(min);
-      A.splice(indexMin, 1);
-      console.log(A);
-      min = A[0];
-      i = 1;
-      if (A.length === 1) {
-        result.push(A[0]);
-        A.splice(0, 1);
-        break;
-      }
-    } else {
-      i++;
-    }
-  }
-  return result;
-}
 function unique(A) {
   let result = [];
   for (let i = 0; i < A.length; i++) {
@@ -96,8 +43,8 @@ function unique(A) {
       }
       if (A[i] === A[j]) {
         find = true;
+        break;
       }
-      if (find) break;
     }
     if (find === false && !result.includes(A[i])) result.push(A[i]);
   }
@@ -126,20 +73,42 @@ function unique(A) {
 function duplicated(A) {
   let result = [];
   for (let i = 0; i < A.length; i++) {
-    if (typeof A[i] == "undefined") {
+    if (typeof A[i] != "number") {
       continue;
     }
     let find = false;
     for (let j = i + 1; j < A.length; j++) {
-      if (typeof A[j] == "undefined") {
+      if (typeof A[j] != "number") {
         continue;
       }
       if (A[i] === A[j]) {
         find = true;
+        break;
       }
-      if (find) break;
     }
     if (find === true && !result.includes(A[i])) result.push(A[i]);
+  }
+  return result;
+}
+
+function neverDuplicated(A) {
+  let result = [];
+  let B = clone(A);
+  for (let i = 0; i < A.length; i++) {
+    if (typeof B[i] != "number") {
+      continue;
+    }
+    let find = false;
+    for (let j = i + 1; j < A.length; j++) {
+      if (typeof B[j] != "number") {
+        continue;
+      }
+      if (B[i] === B[j]) {
+        find = true;
+        B[j] = null;
+      }
+    }
+    if (find === false && !result.includes(B[i])) result.push(B[i]);
   }
   return result;
 }
@@ -177,7 +146,7 @@ let A = [
 // console.log(sortUnique(A));
 // console.log(negative(A));
 // console.log(positive(A));
-console.log(duplicated(A));
+console.log(neverDuplicated(A));
 // console.log(
 //   A.reduce(function (array, currentValue) {
 
@@ -187,8 +156,7 @@ console.log(duplicated(A));
 console.log(sort(duplicated(A)));
 console.log(unique(A));
 console.log(sort(unique(A)));
-console.log([].length);
-console.log(boucle(unique(A)));
+
 // console.log(A);
 
 // console.log(A);

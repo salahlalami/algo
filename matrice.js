@@ -6,7 +6,7 @@ function vector(A) {
       if (typeof A[i][j] != "number") {
         continue;
       }
-      if (!result.includes(A[i][j])) result.push(A[i][j]);
+      result.push(A[i][j]);
     }
   }
 
@@ -19,7 +19,7 @@ function matrice(A, l) {
   while (i < A.length) {
     let C = [];
     for (let j = 0; j < l; j++) {
-      C.push(A[i]);
+      if (typeof A[i] != "undefined") C.push(A[i]);
       i++;
     }
 
@@ -38,11 +38,11 @@ let A = [
   [4, 1],
   [2, 6],
 ];
-// console.log(sortUnique(A));
-// console.log(negative(A));
-// console.log(positive(A));
-// console.log(duplicated(A));
-// console.log();
+
 let B = vector(A);
 console.log(B);
-console.log(matrice(B, 3));
+let sorted = B.sort((s, b) => b - s);
+
+console.log(sorted);
+console.log(matrice(sorted, 2));
+// console.log(compare(5, 2));
