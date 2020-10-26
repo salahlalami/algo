@@ -108,41 +108,22 @@ function neverDuplicated(A) {
         B[j] = null;
       }
     }
-    if (find === false && !result.includes(B[i])) result.push(B[i]);
+    if (find === false) result.push(B[i]);
   }
   return result;
 }
-let A = [
-  ,
-  ,
-  0,
-  3,
-  -2,
-  1,
-  9,
-  "👻",
-  ,
-  2,
-  -18,
-  ,
-  ,
-  "👻",
-  3,
-  0,
-  -4,
-  ,
-  "👻",
-  1,
-  ,
-  -2,
-  3,
-  ,
-  ,
-  6,
-  4,
-  ,
-  ,
-];
+
+function s(A) {
+  let result = 0;
+
+  for (let element of A) {
+    // Apply Bitwise XOR to the current and next element
+    result ^= element;
+  }
+
+  return result;
+}
+let A = [0, 3, -2, 1, 9, 2, -18, 3, 0, -4, 1, -2, 3, 6, 4];
 // console.log(sortUnique(A));
 // console.log(negative(A));
 // console.log(positive(A));
