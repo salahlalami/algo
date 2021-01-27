@@ -123,11 +123,33 @@ function s(A) {
 
   return result;
 }
+
+function FirstNeverDuplicated(str) {
+  const A = str.split("");
+  let result = [];
+  let B = JSON.parse(JSON.stringify(A));
+  // clone(A);
+  for (let i = 0; i < A.length; i++) {
+    let find = false;
+    for (let j = i + 1; j < A.length; j++) {
+      if (B[i] === B[j]) {
+        find = true;
+        B[j] = null;
+      }
+    }
+    if (find === false) result.push(B[i]);
+  }
+  return result[0];
+}
 let A = [0, 3, -2, 1, 9, 2, -18, 3, 0, -4, 1, -2, 3, 6, 4];
+
+const str = "hello world hi hey";
+console.log(FirstNeverDuplicated(str));
+console.log(neverDuplicated(A));
 // console.log(sortUnique(A));
 // console.log(negative(A));
 // console.log(positive(A));
-console.log(neverDuplicated(A));
+
 // console.log(
 //   A.reduce(function (array, currentValue) {
 
